@@ -6,7 +6,7 @@ library(ggmap)
 
 
 FL <- read_csv('https://raw.githubusercontent.com/gitcnk/Data/master/ElectionData/Florida_before2016.csv')
-covid_UScounties <- read.csv("~/Downloads/all-states-history.csv")
+covid_UScounties <- read.csv("https://raw.githubusercontent.com/DOUZIZIZIII/Stats1/master/all-states-history.csv")
 covid_UScounties <- covid_UScounties %>%
   rename(State = state)
 election <- read.csv(file = 'https://raw.githubusercontent.com/tonmcg/US_County_Level_Election_Results_08-16/master/US_County_Level_Presidential_Results_08-16.csv')
@@ -28,9 +28,9 @@ volatility(covid_UScounties, n = 10, calc = "deathIncrease", N = days$date_diff,
 
 
 #reopen date
-reopen2 <- read.csv("~/Downloads/reopen2.csv")
+reopen2 <- read.csv("https://raw.githubusercontent.com/DOUZIZIZIII/Stats1/master/reopen2.csv")
 
-abbreviation<- read.csv("~/Desktop/state.abbreviation.csv")
+abbreviation<- read.csv("https://raw.githubusercontent.com/DOUZIZIZIII/Stats1/master/state.abbreviation.csv")
 
 covid_reopen <- inner_join(abbreviation, reopen, by = 'State')
 #need to slice and dice
