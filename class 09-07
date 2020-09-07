@@ -1,0 +1,52 @@
+
+FL <- read.csv('https://raw.githubusercontent.com/gitcnk/Data/master/ElectionData/Florida_before2016.csv')
+OH <- read.csv('https://raw.githubusercontent.com/gitcnk/Data/master/ElectionData/Ohio_before2016.csv')
+PA <- read.csv('https://raw.githubusercontent.com/gitcnk/Data/master/ElectionData/Penn_before2016.csv')
+
+library(ggplot2)
+
+p <- ggplot(data = FL, aes(x= registered_d_2016, y = hs_diploma)) +
+        geom_bar(stat = "identity")
+p
+
+ggplot() + 
+  geom_point(data = FL, mapping = aes(x = education_index, y = who_won_2008))
+ # geom_line(data = NYsubset, mapping = aes(x = date, y = ma(NYsubset$daily_count, order = 7)), col = 'red')
+
+ggplot() + 
+  geom_point(data = FL, mapping = aes(x = education_index, y = who_won_2012))
+
+
+ggplot() + 
+  geom_point(data = FL, mapping = aes(x = education_index, y = who_won_2012))
+
+
+FL_small <- FL %>%
+  select(county,income,education_index, unemployment_rate,
+         registered_d_2016, registered_r_2016, registered_i_2016,
+         who_won_2008, who_won_2012)
+
+# FL_small <- FL %>%
+  # select(county,income,education_index, unemployment_rate,
+         # registered_d_2008, registered_r_2008, registered_i_2008,
+        # registered_d_2012, registered_r_2012, registered_i_2012,
+        # who_won_2008, who_won_2012)
+
+
+
+who_won_2012 <- table(FL$who_won_2012, FL$county)
+who_won_2008 <- table(FL$who_won_2008, FL$county)
+who_won_table <- cbind(who_won_2008, who_won_2012, by = 'county')
+table2012 <- table(FL$who_won_2012)
+table2008 <- table(FL$who_won_2008)
+
+who_won_table
+
+
+
+
+barplot(table2012, main="Presidental Party Winner",
+        xlab = "Number of Counties", col=c("purple", "green"),
+        legend = rownames(table2012), beside=TRUE)
+
+
